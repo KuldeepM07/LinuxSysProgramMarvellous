@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    iRetValLSeek = lseek(iFDSourceFile, iFromNumberOfBytes, iFDSourceFile);
+    iRetValLSeek = lseek(iFDSourceFile, iFromNumberOfBytes, 0);
     if(iRetValLSeek == -1)
     {
         printf("Invalid seek position");
