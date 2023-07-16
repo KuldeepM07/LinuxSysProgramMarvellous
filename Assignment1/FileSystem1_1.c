@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
+// Take input file name from user and open that file
 int main(int argc, char *argv[])
 {
     if(argc != 2)
