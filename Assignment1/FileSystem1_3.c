@@ -15,11 +15,6 @@ int main(int argc, char *argv[])
     int fd = 0;
     int modeSpecifiedByUser = O_RDONLY;
 
-    // O_RDONLY     Read Mode
-    // O_RDWR       Read + Write Mode
-    // O_WRONLY     Write Mode
-    // O_CREATE     Create Mode
-
     if(strcmp(argv[2], "Read") == 0)
     {
         modeSpecifiedByUser = R_OK;
