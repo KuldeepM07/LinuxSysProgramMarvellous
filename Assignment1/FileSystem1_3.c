@@ -8,12 +8,12 @@ int main(int argc, char *argv[])
 {
     if(argc != 3)
     {
-        printf("Invalid usage: Please provide file name and mode to opne\n");
+        printf("Invalid usage: Please provide file name and mode to check\n");
         return -1;
     }
 
     int fd = 0;
-    int modeSpecifiedByUser = O_RDONLY;
+    int modeSpecifiedByUser = F_OK;
 
     if(strcmp(argv[2], "Read") == 0)
     {
