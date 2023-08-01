@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+    int fd = 0;
+    int fdNewFile = 0;
+    int iCountCapitalLetters = 0;
+    char cBuffer[512];
+    int iRetValReadBytes = 0;
+    int iITR = 0;
+
+    fd = open("hello.txt", O_RDONLY);
+    if(fd == 0)
+    {
+        printf("Unable to open demo.txt file\n");
+        return -1;
+    }
+
+    // Create new file for writing
+    fdNewFile = open("hello.txt", O_APPEND);
+    if(fdNewFile == 0)
+    {
+        fdNewFile = creat("hello.txt", 0777);
+        if(fdNewFile == 0)
+        {
+            printf("Unable to create output file");
+            return -1;
+        }
+    }
+
+    while((iRetValReadBytes = read(fdNewFile, cBuffer, sizeof(cBuffer))) != 0)
+    {
+        for(iITR = 0;iITR<iRetValReadBytes;iITR++)
+        {
+            if(cBuffer[iITR] >= 'A' || cBuffer[iITR] <= 'Z')
+            {
+                iCountCapitalLetters++;
+            }
+        }
+    }
+
+    sprintf(cBuffer, "Capital letters count in hello.txt: %d\n", iCountCapitalLetters);
+    write(fdNewFile, cBuffer, strlen(cBuffer));
+
+    close(fd);
+    close(fdNewFile);
+
+
+    return 0;
+}
